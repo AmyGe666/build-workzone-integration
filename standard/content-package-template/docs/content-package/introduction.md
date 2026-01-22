@@ -1,8 +1,9 @@
 # Content Package
 
-A content package bundles different content artifacts for SAP Launchpad Service New Site Experience (Beta). 
+A content package bundles different content artifacts for SAP Launchpad Service New Site Experience (Beta).
 
 The artifacts that can be contained in the content package are:
+
 - [CDM content](../cdm/introduction.md)
   - [Roles](../cdm/introduction.md#role)
   - [Spaces](../cdm/introduction.md#space)
@@ -25,7 +26,7 @@ If you create own content package please change the id with an abbreviation of y
         "id": "my.comp.ns.cpkg", //RESTRICTION: Only 20 chars are allowed
         "__id": "my.company.ns.contentpackage.sample",
     		"i18n": "i18n/i18n.properties",
-		
+
         "packageVersion": {
             // Version in semantic versioning major.minor.patch
             "version": "1.0.0",
@@ -34,7 +35,7 @@ If you create own content package please change the id with an abbreviation of y
             // (optional), possible values: none|major|major.minor|all, defaults: all
             "upgradeNotification": "none"
         },
-      	// The release notes of this package. This will be shown when a package has a version to upgrade. 
+      	// The release notes of this package. This will be shown when a package has a version to upgrade.
       	"releaseNotes": [
       	    // releaseNotes is an array, all the below items will be shown as different lines in the version detail.
       	    {
@@ -126,12 +127,59 @@ If you create own content package please change the id with an abbreviation of y
 
 ```
 
+### Mandatory fields
+
+- Package manifest (manifest.json):
+  - sap.package.id
+  - sap.package.packageVersion.version
+  - sap.package.packageVersion.upgradeNotification
+  - At least one of sap.package.contents or sap.package.cdmEntities must be present and non-empty
+
+- Each contents item:
+  - manifest.sap.artifact.id
+  - manifest.sap.artifact.type
+  - artifactVersion.version
+  - baseURL (or legacy baseUrl/baseDir)
+
+- i18n is optional; destinations are optional.
+
+- System-managed fields like origin, status, updatedOn must not be authored.
+
+- Minimal manifest.json example with mandatory fields only:
+
+```json
+{
+  "sap.package": {
+    "id": "company.department.packagename",
+    "packageVersion": {
+      "version": "1.0.0",
+      "upgradeNotification": "ALL"
+    },
+    "contents": [
+      {
+        "manifest": {
+          "sap.artifact": {
+            "id": "company.department.card.sample",
+            "type": "card"
+          }
+        },
+        "artifactVersion": {
+          "version": "1.0.0"
+        },
+        "baseURL": "artifacts/card-sample/"
+      }
+    ]
+  }
+}
+```
 
 ## Defining Content (content.json)
+
 The definition of the content of a content package is maintained in the `content.json` file located in the folder `content-package-customer-sample/content-package`
 
 In a json map the content is listed. It has the following structure.
-```` js
+
+```js
 {
   "artifact1-name": {
     "type": "card",                   // the type of the artifact, card|role|space|workpage
@@ -147,10 +195,12 @@ In a json map the content is listed. It has the following structure.
     }
   }
 }
-````
+```
 
 ### Business App & UI Integraton Cards as Visualization
+
 Role definitions can be easily integrated as they do not require an optimized build step.
+
 <details>
   <summary>Sample Code for adding a BusinessApp</summary>
   
@@ -187,7 +237,9 @@ Add the appId and vizId to set the UI Integration Card as the visualization of t
 </details>
 
 ### Roles/Spaces/Workpage Artifacts
+
 Role definitions can be easily integrated as they do not require an optimized build step as cards.
+
 <details>
   <summary>Sample Code for adding a Card</summary>
   
@@ -216,9 +268,7 @@ Role definitions can be easily integrated as they do not require an optimized bu
   `````
 </details>
 
-
 ## Creation of the Content Package
-
 
 Run the following commands in the `content-package` folder:
 
@@ -226,13 +276,14 @@ Run the following commands in the `content-package` folder:
 npm install
 npm run build-local
 ```
+
 ## Resulting Content Package
 
 A `package.zip` file will be created in the root folder. The content of the zip can be found in the `package`folder created during the build. This has the following structure. The artifact names are taken from the `content.json`
 
 ```javascript
   package.zip
-  manifest.json         //package manifest 
+  manifest.json         //package manifest
                         //contains the cdmEntities
 	i18n                  //containing i18n.properties for package manifest texts. UTF-8 encoded
 	artifacts
@@ -252,7 +303,9 @@ A `package.zip` file will be created in the root folder. The content of the zip 
 ```
 
 ## Content Package sample content
+
 If you run the content package based on the settings in the `content.json` file
+
 - 1 Role -> my.company.ns.contentpackage.role1
 - 1 Space -> my.company.ns.contentpackage.space1
 - 1 Workpage -> my.company.ns.contentpackage.workpage1 containing 3 cards (visualizations).
@@ -260,10 +313,6 @@ If you run the content package based on the settings in the `content.json` file
 For your convenience there is also a second workpage and role already prepared to be used.
 
 [Additional cdm sources](../../cdm-samples/src)
+
 - 1 Role -> my.company.ns.contentpackage.role2
 - 1 Workpage -> my.company.ns.contentpackage.workpage2 containing additional 4 cards (visualizations)
-
-
-
-
-

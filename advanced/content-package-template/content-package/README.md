@@ -47,7 +47,7 @@ The manifest.json file allows the following settings. Please maintain the values
             // (optional), possible values: none|major|major.minor|all, defaults: all
             "upgradeNotification": "none"
         },
-	    // The release Notes of this package. This will be shown when a package has a version to upgrade. 
+	    // The release Notes of this package. This will be shown when a package has a version to upgrade.
 	    "releaseNotes": [
             // releaseNotes is an array, all the below items will be shown as different lines in the version detail.
             {
@@ -134,7 +134,7 @@ The manifest.json file allows the following settings. Please maintain the values
         },
         // Pre-check for a content package
         "prerequisites": {
-            //If the content package contains apps/cards that requires a destination to the remote system, specify the destinations names here. If this destination is missing in the system, we will render a URL to specify the the help document. 
+            //If the content package contains apps/cards that requires a destination to the remote system, specify the destinations names here. If this destination is missing in the system, we will render a URL to specify the the help document.
             "destinations": [
                 {
                     "name": "123",
@@ -155,6 +155,52 @@ The manifest.json file allows the following settings. Please maintain the values
 The `content.json` links the repositories of the individual artifacts that should be contained in the Content Package.
 
 The key of each entry in the map reflects one artifact.
+
+### Mandatory fields
+
+- Package manifest (manifest.json):
+  - sap.package.id
+  - sap.package.packageVersion.version
+  - sap.package.packageVersion.upgradeNotification
+  - At least one of sap.package.contents or sap.package.cdmEntities must be present and non-empty
+
+- Each contents item:
+  - manifest.sap.artifact.id
+  - manifest.sap.artifact.type
+  - artifactVersion.version
+  - baseURL (or legacy baseUrl/baseDir)
+
+- i18n is optional; destinations are optional.
+
+- System-managed fields like origin, status, updatedOn must not be authored.
+
+- Minimal manifest.json example with mandatory fields only:
+
+```json
+{
+  "sap.package": {
+    "id": "company.department.packagename",
+    "packageVersion": {
+      "version": "1.0.0",
+      "upgradeNotification": "ALL"
+    },
+    "contents": [
+      {
+        "manifest": {
+          "sap.artifact": {
+            "id": "company.department.card.sample",
+            "type": "card"
+          }
+        },
+        "artifactVersion": {
+          "version": "1.0.0"
+        },
+        "baseURL": "artifacts/card-sample/"
+      }
+    ]
+  }
+}
+```
 
 ### Using git repositories for the artifacts
 
@@ -236,7 +282,6 @@ Content Packages use sematic versioning (major.minor.patch) according to the fol
 **Increase the version**
 
 - Change the version of the package.json
-
   - For patches  
     `"version"`: `"1.0.0"` -> `"version"`: `"1.0.1"`
   - For minor version changes  
@@ -301,5 +346,3 @@ package.zip
 ```
 
 ## Uploading a Content Package to SAP Work Zone
-
-

@@ -105,12 +105,20 @@ resources:
       init_data:
         subaccount:
           destinations:
+          # - Authentication: NoAuthentication
+          #   Name: manageproductscdm-rt
+          #   ProxyType: Internet
+          #   Type: HTTP
+          #   CEP.HTML5contentprovider: true
+          #   URL: https://provider-qtt8gaj3.launchpad.cfapps.us10.hana.ondemand.com
+          #   # URL: https://SUBDOMAIN.${default-domain} 
           - Authentication: NoAuthentication
             Name: manageproductscdm-rt
             ProxyType: Internet
             Type: HTTP
             CEP.HTML5contentprovider: true
-            URL: https://providersa-launchpad-tenant.cfapps.region.hana.ondemand.com
+            CEP.idpOrigin: 'sap.custom'
+            URL: https://provider-qtt8gaj3.launchpad.cfapps.us10.hana.ondemand.com
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
@@ -127,6 +135,8 @@ resources:
     service-name: manageproductscdm-xsuaa-service
     service-plan: application
 #################################################################################
+
+
 
 parameters:
   deploy_mode: html5-repo

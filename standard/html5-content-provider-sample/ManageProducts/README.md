@@ -9,6 +9,8 @@
 
 Refer the documentation [here](https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/developing-html5-apps-for-cross-subaccount-consumption) for details.
 
+Refere to SAP Help [WorkZone Standard - Business Solution - Single-Tenant Business Solution](https://help.sap.com/docs/build-work-zone-standard-edition/sap-build-work-zone-standard-edition/creating-business-solutions)
+
 
 Prerequisites
 Access to an SAP BTP Trial Global Account.
@@ -32,9 +34,9 @@ Enable Cloud Foundry environment and move 1 Quota from trial subaccount to the n
 
 4. Subscribe SAP Build Work Zone, standard edition
 
-5. Update configure of manageproductscdm-destination-service in mta.yaml file
+5. Update configure of manageproductscdm-destination-service in mta.yaml file  
 Choose one subaccount as provider subacacount, the application will be deployed to it.  
-Then open you Workzone Standard application on it and record the URL,  
+Then open Workzone Standard application on it and record the URL,  
 For example: https://provider-qtt8gaj3.dt.launchpad.cfapps.us10.hana.ondemand.com/sites  
 Update mta.yaml,  
 ![updated mta](configfiles/image.png)  

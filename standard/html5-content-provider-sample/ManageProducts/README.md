@@ -9,7 +9,7 @@
 
 Refer the documentation [here](https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/developing-html5-apps-for-cross-subaccount-consumption) for details.
 
-Refere to SAP Help [WorkZone Standard - Business Solution - Single-Tenant Business Solution](https://help.sap.com/docs/build-work-zone-standard-edition/sap-build-work-zone-standard-edition/creating-business-solutions)
+Refer to SAP Help [WorkZone Standard - Business Solution - Single-Tenant Business Solution](https://help.sap.com/docs/build-work-zone-standard-edition/sap-build-work-zone-standard-edition/creating-business-solutions)
 
 
 Prerequisites
